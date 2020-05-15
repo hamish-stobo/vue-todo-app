@@ -1,28 +1,60 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <Header />
+    <Todos v-bind:todos='todos' 
+    v-on:deleteTodoItem="deleteTodoItem"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import Header from './components/layout/Header'
+import Todos from './components/Todos'
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
+    name: 'app',
+    components: {
+      Header,
+      Todos
+    },
+    data() {
+      return {
+        todos: [
+        {
+          id: 1,
+          title: 'Mop the floor',
+          completed: false
+        },
+        {
+          id: 2,
+          title: 'Dust the living room',
+          completed: true,
+        },
+        {
+          id: 3,
+          title: 'Wash the cat',
+          completed: false
+        }
+      ]
+    }
+    },
+    methods: {
+      deleteTodoItem(id) {
+        this.todos = this.todos.filter(todo => todo.id !== id)
+      }
+    },
   }
-}
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, Helvetic, sans-serif;
+  line-height: 1.4;
+  width: 100%;
+  padding: 0 10px;
 }
 </style>
