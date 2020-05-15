@@ -1,6 +1,7 @@
 <template>
   <div>
     <Header />
+    <AddTodo v-on:addTodo="addTodo"/>
     <Todos v-bind:todos='todos' 
     v-on:deleteTodoItem="deleteTodoItem"/>
   </div>
@@ -8,11 +9,13 @@
 
 <script>
 import Header from './components/layout/Header'
+import AddTodo from './components/AddTodo'
 import Todos from './components/Todos'
 export default {
     name: 'app',
     components: {
       Header,
+      AddTodo,
       Todos
     },
     data() {
@@ -39,6 +42,9 @@ export default {
     methods: {
       deleteTodoItem(id) {
         this.todos = this.todos.filter(todo => todo.id !== id)
+      },
+      addTodo(item) {
+        this.todos = [...this.todos, item]
       }
     },
   }
@@ -56,5 +62,16 @@ body {
   line-height: 1.4;
   width: 100%;
   padding: 0 10px;
+}
+
+.submit-btn {
+  display: inline-block;
+  background: rgb(44, 44, 44);
+  color: white;
+  border: none;
+}
+
+.submit-btn:hover {
+  background: rgb(75, 75, 75);
 }
 </style>

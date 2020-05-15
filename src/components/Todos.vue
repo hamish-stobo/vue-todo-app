@@ -21,9 +21,10 @@ import TodoItem from './TodoItem'
     .todolist {
         color: white;
         background: rgba(112, 112, 112, 0.808);
-        margin: 5px 0;
+        margin: 5px auto;
         border-radius: 10px;
         padding: 15px 0 0 10px;
         font-family: 'Courier New', Courier, monospace;
+        max-width: 70%;
     }
 </style>
