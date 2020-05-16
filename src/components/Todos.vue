@@ -1,7 +1,7 @@
 <template>
     <div>
-        <div v-bind:key="todo.title" v-for="todo in todos">
-            <TodoItem class="todolist" v-bind:todo="todo" v-on:deleteTodoItem="$emit('deleteTodoItem', todo.id)"/>
+        <div class="todolist" v-bind:key="todo.title" v-for="todo in todos">
+            <TodoItem v-bind:todo="todo" v-on:deleteTodoItem="$emit('deleteTodoItem', todo.id)"/>
         </div>
     </div>
 </template>
@@ -20,10 +20,8 @@ import TodoItem from './TodoItem'
 <style scoped>
     .todolist {
         color: white;
-        background: rgba(112, 112, 112, 0.808);
         margin: 5px auto;
-        border-radius: 10px;
         font-family: 'Courier New', Courier, monospace;
-        max-width: 70%;
+        max-width: 80%;
     }
 </style>
