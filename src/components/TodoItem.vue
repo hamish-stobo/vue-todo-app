@@ -25,7 +25,6 @@ import EditForm from './EditForm'
                 this.todo.completed = !this.todo.completed
             },
             displayEditForm(id) {
-                console.log(id)
                 if(!this.editBtnId || this.editBtnId !== id) {
                     this.editBtnId = id
                 } else {
@@ -39,8 +38,7 @@ import EditForm from './EditForm'
                     title,
                     completed
                 }
-                console.log('edited todo, ', editedTodo)
-                this.$emit('sendEditRequest')
+                this.$emit('send-edit-request', editedTodo)
                 this.editBtnId = null
             }
         },

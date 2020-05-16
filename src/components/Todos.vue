@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="todolist" v-bind:key="todo.title" v-for="todo in todos">
-            <TodoItem v-bind:todo="todo" v-on:sendEditRequest="$emit('sendEditRequest', todo)" v-on:deleteTodoItem="$emit('deleteTodoItem', todo.id)"/>
+            <TodoItem v-bind:todo="todo" v-on:send-edit-request="passUpEditObj" v-on:deleteTodoItem="$emit('deleteTodoItem', todo.id)"/>
         </div>
     </div>
 </template>
@@ -13,7 +13,12 @@ import TodoItem from './TodoItem'
         components: {
             TodoItem
         },
-        props: ["todos"]
+        props: ["todos"],
+        methods: {
+            passUpEditObj(obj) {
+                this.$emit('send-edit-request', obj)
+            }
+        }
     }
 </script>
 

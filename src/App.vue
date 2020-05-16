@@ -4,7 +4,7 @@
     <AddTodo v-on:addTodo="addTodo"/>
     <Todos 
       v-bind:todos='todos' 
-      v-on:sendEditRequest="sendEditRequest"
+      v-on:send-edit-request="sendEditRequest"
       v-on:deleteTodoItem="deleteTodoItem"
     />
   </div>
@@ -30,16 +30,26 @@ export default {
     methods: {
       async sendEditRequest(editedTodo) {
         const { id, title, completed } = editedTodo
-        console.log(editedTodo)
+        console.log('edit in app', editedTodo)
         try {
-        await axios.put(`https://jsonplaceholder.typicode.com/todos/${id}`, {
+        const res = await axios.put(`https://jsonplaceholder.typicode.com/todos/${id}`, 
+        {
           id,
           title,
           completed
+        },
+        {
+        headers: {
+          "Content-type": "application/json; charset=UTF-8"
+        }
         })
+        console.log('response from put request ', res)
         this.todos = this.todos.map(item => {
-          if(item.id === id) 
-            item = editedTodo
+          if(item.id === id) {
+            return res.data
+          } else {
+            return item
+          }
         })
         } catch (err) {
           alert(err.message)
