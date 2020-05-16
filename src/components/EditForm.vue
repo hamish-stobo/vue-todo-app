@@ -1,7 +1,7 @@
 <template>
 <div>
-    <form class="edit-form">
-        <textarea class="text-area" name="title" v-model="title" />
+    <form class="edit-form" @submit.prevent="sendEditRequest">
+        <textarea class="text-area" name="title" v-model="titleHere" />
         <button class="submit-btn">Submit</button>
     </form>
 </div>
@@ -10,10 +10,15 @@
 <script>
     export default {
         name: 'EditForm',
-        props: ['todo'],
+        props: ['title'],
         data() {
             return {
-                title: this.todo.title
+                titleHere: this.title
+            }
+        },
+        methods: {
+            sendEditRequest() {
+                this.$emit('sendEditReq', this.titleHere)
             }
         }
     }

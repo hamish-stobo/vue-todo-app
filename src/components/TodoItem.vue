@@ -5,7 +5,7 @@
             {{todo.title}}
         </p>
         <div class="edit-form-wrapper" v-else>
-            <EditForm v-bind:todo="todo" />
+            <EditForm v-bind:title="todo.title" v-on:sendEditReq="passUpEditedObj" />
         </div>
         <button class="edit-btn" @click="displayEditForm(todo.id)">Edit</button>
         <button class="del-btn" v-on:click="$emit('deleteTodoItem', todo.id)">x</button>
@@ -31,6 +31,17 @@ import EditForm from './EditForm'
                 } else {
                     this.editBtnId = null
                 }
+            },
+            passUpEditedObj(title) {
+                const { id, completed } = this.todo
+                const editedTodo = {
+                    id,
+                    title,
+                    completed
+                }
+                console.log('edited todo, ', editedTodo)
+                this.$emit('sendEditRequest')
+                this.editBtnId = null
             }
         },
         data() {

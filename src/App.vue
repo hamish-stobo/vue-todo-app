@@ -2,8 +2,11 @@
   <div>
     <Header />
     <AddTodo v-on:addTodo="addTodo"/>
-    <Todos v-bind:todos='todos' 
-    v-on:deleteTodoItem="deleteTodoItem"/>
+    <Todos 
+      v-bind:todos='todos' 
+      v-on:sendEditRequest="sendEditRequest"
+      v-on:deleteTodoItem="deleteTodoItem"
+    />
   </div>
 </template>
 
@@ -25,6 +28,23 @@ export default {
     }
     },
     methods: {
+      async sendEditRequest(editedTodo) {
+        const { id, title, completed } = editedTodo
+        console.log(editedTodo)
+        try {
+        await axios.put(`https://jsonplaceholder.typicode.com/todos/${id}`, {
+          id,
+          title,
+          completed
+        })
+        this.todos = this.todos.map(item => {
+          if(item.id === id) 
+            item = editedTodo
+        })
+        } catch (err) {
+          alert(err.message)
+        }
+      },  
       async deleteTodoItem(id) {
         try {
           await axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
