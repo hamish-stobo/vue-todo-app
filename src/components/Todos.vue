@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-bind:key="todo.id" v-for="todo in todos">
+        <div v-bind:key="todo.title" v-for="todo in todos">
             <TodoItem class="todolist" v-bind:todo="todo" v-on:deleteTodoItem="$emit('deleteTodoItem', todo.id)"/>
         </div>
     </div>
