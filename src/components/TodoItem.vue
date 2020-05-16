@@ -22,8 +22,8 @@
 
 <style scoped>
     .list-item {
-        height: 40px;
         padding-right: 20px;
+        vertical-align: middle;
     }
 
     .is-complete {
