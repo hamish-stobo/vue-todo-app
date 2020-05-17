@@ -30,11 +30,6 @@
 
 <style scoped>
 
-    .add-todo-wrapper {
-        max-width: 80%;
-        margin: 0 auto;
-    }
-
     form {
         display: flex;
         height: 3rem;

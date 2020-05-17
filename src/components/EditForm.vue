@@ -18,6 +18,7 @@
         },
         methods: {
             sendEditRequest() {
+                console.log('edit form, ', this.titleHere)
                 this.$emit('sendEditReq', this.titleHere)
             }
         }

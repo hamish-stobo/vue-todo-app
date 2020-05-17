@@ -16,6 +16,7 @@ import TodoItem from './TodoItem'
         props: ["todos"],
         methods: {
             passUpEditObj(obj) {
+                console.log('todos list, ', obj)
                 this.$emit('send-edit-request', obj)
             }
         }
@@ -27,6 +28,5 @@ import TodoItem from './TodoItem'
         color: white;
         margin: 5px auto;
         font-family: 'Courier New', Courier, monospace;
-        max-width: 80%;
     }
 </style>

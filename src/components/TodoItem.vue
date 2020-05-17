@@ -38,6 +38,7 @@ import EditForm from './EditForm'
                     title,
                     completed
                 }
+                console.log('todo item, ', editedTodo)
                 this.$emit('send-edit-request', editedTodo)
                 this.editBtnId = null
             }
